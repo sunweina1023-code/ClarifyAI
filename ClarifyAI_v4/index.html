@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClarifyAI — Intelligent Clarification Chatbot</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">C</span><div><strong>ClarifyAI</strong><small>Intelligent clarification prototype · v3</small></div></div><span class="status"><i></i> Prototype mode</span></header>
+<main class="layout">
+  <section class="intro"><p class="eyebrow">A2 PROJECT · INTERACTIVE SYSTEM</p><h1>Ask better questions.<br><span>Get more useful answers.</span></h1><p class="intro-copy">Compare how clarification timing affects task success and user effort.</p></section>
+  <section class="workspace">
+    <aside class="settings panel"><p class="eyebrow">EXPERIMENT SETUP</p><h2>Choose a strategy</h2>
+      <label for="strategy">Clarification strategy</label><select id="strategy"><option value="direct">A · Direct answer</option><option value="before" selected>B · Ask before answering</option><option value="after">C · Answer, then clarify</option></select>
+      <div class="strategy-note" id="strategyNote">The system asks a question before giving its final answer.</div>
+      <label for="scenario">Try a sample task</label><select id="scenario"><option value="gift">“Recommend a good gift.”</option><option value="bank">“I need help with my account.”</option><option value="meeting">“Book a meeting for Friday.”</option><option value="weather">“Will I need a coat tomorrow?”</option></select>
+      <button class="secondary full" id="loadSample">Load sample</button><div class="divider"></div>
+      <div class="metric-title">Live interaction measures</div><div class="metric"><span>Dialogue turns</span><strong id="turnMetric">0</strong></div><div class="metric"><span>Clarification questions</span><strong id="questionMetric">0</strong></div><div class="metric"><span>Ambiguity estimate</span><strong id="ambiguityMetric">—</strong></div>
+      <p class="tiny">Ambiguity is estimated using simple rules. These indicators are not validated psychological or accuracy measures.</p><button class="text-button" id="reset">↻ Reset conversation</button>
+    </aside>
+    <section class="chat panel"><div class="chat-head"><div class="avatar">AI</div><div><strong>Clarification assistant</strong><small>Rule-based demonstration · no external AI API</small></div><span class="live-tag">ONLINE</span></div>
+      <div class="messages" id="messages" aria-live="polite"><div class="message assistant"><div class="bubble">Hello! Tell me what you need help with. I will decide whether more information is needed.</div><small>ClarifyAI · simulated</small></div></div>
+      <div class="composer"><label class="sr-only" for="userInput">Your message</label><textarea id="userInput" rows="2" placeholder="Type your request here…"></textarea><button id="send" class="primary">Send ➜</button></div><p class="privacy-note">Demo only. Messages are processed locally in your browser, not sent to an AI service.</p>
+    </section>
+  </section>
+  <section class="feedback panel"><div><p class="eyebrow">USER FEEDBACK</p><h2>Evaluate this interaction</h2><p class="muted">Complete the conversation, then rate whether the task was solved and how the interaction felt.</p></div>
+    <div class="feedback-controls"><label for="taskSuccess">Did the system solve your task?</label><select id="taskSuccess"><option value="">Choose an outcome</option><option value="yes">Yes — successfully</option><option value="partial">Partially</option><option value="no">No</option></select>
+      <label for="effort">Mental effort <strong id="effortValue">3 / 5</strong></label><input id="effort" type="range" min="1" max="5" value="3">
+      <label for="satisfaction">Satisfaction <strong id="satisfactionValue">3 / 5</strong></label><input id="satisfaction" type="range" min="1" max="5" value="3">
+      <div class="feedback-actions"><button id="saveFeedback" class="secondary">Save feedback</button><button id="exportCsv" class="secondary">Export CSV</button><button id="clearData" class="secondary danger-button" type="button" aria-label="Clear saved experiment data">
+          <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M3.5 4.5h9M6 4.5V3h4v1.5m-5.5 0 .6 9h5.8l.6-9M6.5 7v4.5M9.5 7v4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Clear saved data
+        </button></div>
+      <div class="delete-records">
+        <strong>Delete selected records</strong>
+        <p>Enter record numbers (not spreadsheet row numbers). Record 1 is the first saved experiment.</p>
+        <div class="delete-range">
+          <label for="deleteFrom">From <input id="deleteFrom" type="number" min="1" value="1"></label>
+          <label for="deleteTo">To <input id="deleteTo" type="number" min="1" value="1"></label>
+          <button id="deleteRange" class="secondary danger-button" type="button">Delete range</button>
+        </div>
+        <small id="recordCount">0 saved records</small>
+      </div>
+    </div><div id="feedbackStatus" class="feedback-status">No feedback saved yet. Complete an interaction first.</div>
+  </section>
+  <footer>ClarifyAI · Assignment 2 prototype · AI behaviour is simulated, not generated by a live language model.</footer>
+</main><script src="static/app.js"></script>
+</body></html>
